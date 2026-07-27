@@ -437,6 +437,7 @@ happy bdy mam . me janta hu ki humare beech uch phele jaisa nhi rha but koi baat
 
   if (userPass === correctPass) {
     document.getElementById('lockScreen').style.display = 'none';
+    document.body.classList.remove('locked');
   } else {
     document.getElementById('errorMsg').style.display = 'block';
   }
