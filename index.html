@@ -12,21 +12,18 @@
       margin: 0;
       padding: 0;
     }
-    body {
-      font-family: 'Poppins', sans-serif;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #fef2f2 0%, #ffe4e6 50%, #fecdd3 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+    html, body {
+      width: 100%;
+      height: 100%;
       overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fef2f2 0%, #ffe4e6 50%, #fecdd3 100%);
     }
     body.locked {
       overflow: hidden !important;
-      height: 100vh !important;
     }
+    
+    /* Lock Screen Overlay */
     #lockScreen {
       position: fixed;
       inset: 0;
@@ -48,27 +45,81 @@
       width: 100%;
       border: 1px solid #fecdd3;
     }
-    .main-card {
-      background: rgba(255, 255, 255, 0.9);
+
+    /* Main Container */
+    .app-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    /* Interactive Steps Layout */
+    .step-card {
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(10px);
       border-radius: 24px;
       padding: 30px 20px;
-      max-width: 500px;
+      max-width: 520px;
       width: 100%;
       box-shadow: 0 15px 35px rgba(225, 29, 72, 0.15);
       text-align: center;
       border: 1px solid #fecdd3;
-      margin: auto;
+      margin: 20px auto;
+      transition: all 0.3s ease;
     }
+
     .title {
       font-family: 'Pacifico', cursive;
       color: #e11d48;
       font-size: 2.2rem;
       margin-bottom: 15px;
     }
+
+    /* Floating Hearts Container Fix */
+    .heart-float {
+      position: fixed;
+      font-size: 24px;
+      user-select: none;
+      cursor: pointer;
+      z-index: 100;
+      animation: floatUp 4s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0.8); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
+    /* Candle Styling */
+    .candle-btn {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f43f5e, #e11d48);
+      color: white;
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 20px auto;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(225, 29, 72, 0.4);
+      border: none;
+      transition: transform 0.2s;
+    }
+    .candle-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Paragraph Box */
     .my-paragraph {
       color: #374151;
-      font-size: 1rem;
+      font-size: 0.95rem;
       line-height: 1.8;
       text-align: left;
       background: #ffffff;
@@ -76,26 +127,33 @@
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
       border: 1px solid #ffe4e6;
-      margin-top: 20px;
+      margin-top: 15px;
       white-space: pre-line;
       word-break: break-word;
     }
+
     .btn {
       background: linear-gradient(135deg, #f43f5e, #e11d48);
       color: white;
-      padding: 10px 20px;
+      padding: 12px 24px;
       border-radius: 20px;
       font-weight: 600;
       display: inline-block;
       margin-top: 20px;
       box-shadow: 0 4px 12px rgba(225, 29, 72, 0.3);
       text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
     }
   </style>
 </head>
 <body class="locked">
 
-  <!-- LOCK SCREEN -->
+  <!-- LOCK SCREEN OVERLAY -->
   <div id="lockScreen">
     <div class="lock-card">
       <div style="font-size: 3rem; margin-bottom: 10px;">🔒</div>
@@ -112,29 +170,98 @@
     </div>
   </div>
 
-  <!-- MAIN BIRTHDAY CARD -->
-  <div class="main-card">
-    <h1 class="title">Happy Birthday! 🎉✨</h1>
+  <!-- MAIN APP CONTENT -->
+  <div class="app-container">
 
-    <!-- AAPKA PARAGRAPH -->
-    <div class="my-paragraph">
-happy bdy mam aap hmesha khush rho mene jo galti ki uske liye mafff kro me kuhsh hu ye aapka 3rd bdy hai mere sath aapko wish krna muje bahut accha lgta hai syd bdy ki vo phele wali felling aj bhi utni hi acchi hai jitni us time thi muje vo sare pal yadd hai vo phela bdy me kabhi nhi bhulunga or muje vo pal bahut acche lgte the bs thodi chize shi nhi hui but agr try krgre to ho jayaegi abhi kuch nhi bigda hai mam. and aapke saath beete sare vo pal me hmesha yadd rkhung me ve cha kr bhi nhi bhulna chahta. bs muje ye dar hai ki ap kahi glt haatho mein na chli jao .syd me kabhi aapke kabil nhi ban paya or hmesah apko preshan kia aap uske liye muje maff krdena.apki bahut yadd aati h yarr vo din bhule nhi jate vo subha subha aaoka GM keh kr school janabaatein krna care krna sb kuc apke jane ke bad khtm hgya .mere pass kuch hi rha .aapne muje sudahr dia me nholo
+    <!-- STEP 1: FLOATING HEARTS & CANDLE INTERACTION -->
+    <div id="step1" class="step-card">
+      <h1 class="title">Gift For You 🎉</h1>
+      <p style="color: #6b7280; font-size: 0.9rem;">Click floating hearts 5 times or blow the candle out!</p>
+      
+      <button class="candle-btn" onclick="blowCandle()">
+        <span id="flame" style="font-size: 1.8rem;">🕯️</span>
+        <span style="font-size: 0.75rem; margin-top: 4px;">Blow Candle</span>
+      </button>
+
+      <p style="font-size: 0.85rem; color: #e11d48; font-weight: 600; margin-top: 10px;">
+        Caught Hearts: <span id="heartCount">0</span>/5
+      </p>
+
+      <div id="giftMessage" class="hidden" style="margin-top: 15px;">
+        <p style="color: #10b981; font-weight: 600;">✨ Unlocked! Tap below to open surprise ✨</p>
+        <button onclick="showStep(2)" class="btn">Open Birthday Note 🎁</button>
+      </div>
     </div>
 
-    <a href="blessings.html" class="btn">Next Page ➡️</a>
+    <!-- STEP 2: MY MISTAKE & BIRTHDAY LETTER PAGE -->
+    <div id="step2" class="step-card hidden">
+      <h1 class="title">Happy Birthday! 🎉✨</h1>
+
+      <div class="my-paragraph">
+happy bdy mam aap hmesha khush rho mene jo galti ki uske liye mafff kro me kuhsh hu ye aapka 3rd bdy hai mere sath aapko wish krna muje bahut accha lgta hai syd bdy ki vo phele wali felling aj bhi utni hi acchi hai jitni us time thi muje vo sare pal yadd hai vo phela bdy me kabhi nhi bhulunga or muje vo pal bahut acche lgte the bs thodi chize shi nhi hui but agr try krgre to ho jayaegi abhi kuch nhi bigda hai mam. and aapke saath beete sare vo pal me hmesha yadd rkhung me ve cha kr bhi nhi bhulna chahta. bs muje ye dar hai ki ap kahi glt haatho mein na chli jao .syd me kabhi aapke kabil nhi ban paya or hmesah apko preshan kia aap uske liye muje maff krdena.apki bahut yadd aati h yarr vo din bhule nhi jate vo subha subha aaoka GM keh kr school janabaatein krna care krna sb kuc apke jane ke bad khtm hgya .mere pass kuch hi rha .aapne muje sudahr dia me nholo
+      </div>
+
+      <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <a href="mistake.html" class="btn" style="background: linear-gradient(135deg, #64748b, #475569);">My Mistake 📜</a>
+        <a href="blessings.html" class="btn">Next Page ➡️</a>
+      </div>
+    </div>
+
   </div>
 
   <script>
+    let score = 0;
+
     function checkPassword() {
       const userPass = document.getElementById('passInput').value.trim();
-      const correctPass = "1525"; // 👈 Aapka Password
+      const correctPass = "1525";
 
       if (userPass === correctPass) {
         document.getElementById('lockScreen').style.display = 'none';
         document.body.classList.remove('locked');
+        initFloatingHearts();
       } else {
         document.getElementById('errorMsg').style.display = 'block';
       }
+    }
+
+    function showStep(stepNum) {
+      if (stepNum === 2) {
+        document.getElementById('step1').classList.add('hidden');
+        document.getElementById('step2').classList.remove('hidden');
+      }
+    }
+
+    function blowCandle() {
+      document.getElementById('flame').textContent = '💨';
+      document.getElementById('giftMessage').classList.remove('hidden');
+    }
+
+    function initFloatingHearts() {
+      for (let i = 0; i < 6; i++) {
+        createHeart();
+      }
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart-float';
+      heart.innerHTML = '💖';
+      heart.style.left = Math.random() * 85 + 5 + 'vw';
+      heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+      
+      heart.onclick = function() {
+        score++;
+        document.getElementById('heartCount').textContent = score;
+        heart.remove();
+        if (score >= 5) {
+          document.getElementById('giftMessage').classList.remove('hidden');
+        } else {
+          createHeart();
+        }
+      };
+
+      document.body.appendChild(heart);
     }
   </script>
 
