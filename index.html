@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,9 +56,10 @@
       justify-content: center;
       padding: 20px;
       position: relative;
+      z-index: 10;
     }
 
-    /* Interactive Steps Layout */
+    /* Step Cards */
     .step-card {
       background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(10px);
@@ -69,7 +71,6 @@
       text-align: center;
       border: 1px solid #fecdd3;
       margin: 20px auto;
-      transition: all 0.3s ease;
     }
 
     .title {
@@ -79,22 +80,31 @@
       margin-bottom: 15px;
     }
 
-    /* Floating Hearts Container Fix */
+    /* Floating Hearts Styling */
     .heart-float {
       position: fixed;
-      font-size: 24px;
+      font-size: 28px;
       user-select: none;
       cursor: pointer;
-      z-index: 100;
+      z-index: 50;
       animation: floatUp 4s linear infinite;
+      top: 100vh;
     }
 
     @keyframes floatUp {
-      0% { transform: translateY(100vh) scale(0.8); opacity: 1; }
-      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+      0% {
+        top: 100vh;
+        opacity: 1;
+        transform: scale(0.8);
+      }
+      100% {
+        top: -10vh;
+        opacity: 0;
+        transform: scale(1.3);
+      }
     }
 
-    /* Candle Styling */
+    /* Candle Button */
     .candle-btn {
       width: 90px;
       height: 90px;
@@ -211,6 +221,7 @@ happy bdy mam aap hmesha khush rho mene jo galti ki uske liye mafff kro me kuhsh
 
   <script>
     let score = 0;
+    let heartInterval;
 
     function checkPassword() {
       const userPass = document.getElementById('passInput').value.trim();
@@ -219,7 +230,7 @@ happy bdy mam aap hmesha khush rho mene jo galti ki uske liye mafff kro me kuhsh
       if (userPass === correctPass) {
         document.getElementById('lockScreen').style.display = 'none';
         document.body.classList.remove('locked');
-        initFloatingHearts();
+        startHearts();
       } else {
         document.getElementById('errorMsg').style.display = 'block';
       }
@@ -237,17 +248,20 @@ happy bdy mam aap hmesha khush rho mene jo galti ki uske liye mafff kro me kuhsh
       document.getElementById('giftMessage').classList.remove('hidden');
     }
 
-    function initFloatingHearts() {
-      for (let i = 0; i < 6; i++) {
-        createHeart();
+    function startHearts() {
+      // Pehle 5 hearts instantly spawn honge
+      for (let i = 0; i < 5; i++) {
+        setTimeout(spawnHeart, i * 400);
       }
+      // uske baad continuously loop me spawn honge
+      heartInterval = setInterval(spawnHeart, 800);
     }
 
-    function createHeart() {
+    function spawnHeart() {
       const heart = document.createElement('div');
       heart.className = 'heart-float';
       heart.innerHTML = '💖';
-      heart.style.left = Math.random() * 85 + 5 + 'vw';
+      heart.style.left = Math.random() * 80 + 10 + 'vw';
       heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
       
       heart.onclick = function() {
@@ -256,12 +270,17 @@ happy bdy mam aap hmesha khush rho mene jo galti ki uske liye mafff kro me kuhsh
         heart.remove();
         if (score >= 5) {
           document.getElementById('giftMessage').classList.remove('hidden');
-        } else {
-          createHeart();
         }
       };
 
       document.body.appendChild(heart);
+
+      // Clean up heart after animation ends
+      setTimeout(() => {
+        if (heart.parentNode) {
+          heart.parentNode.removeChild(heart);
+        }
+      }, 5000);
     }
   </script>
 
