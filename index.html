@@ -23,6 +23,44 @@
       overflow: hidden !important;
     }
     
+    /* Countdown Screen Overlay */
+    #countdownScreen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #fef2f2 0%, #ffe4e6 50%, #fecdd3 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100000;
+      padding: 20px;
+    }
+    
+    .countdown-box {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .time-card {
+      background: rgba(225, 29, 72, 0.1);
+      border: 1px solid #fecdd3;
+      padding: 10px 14px;
+      border-radius: 12px;
+      min-width: 65px;
+    }
+
+    .time-num {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #e11d48;
+    }
+
+    .time-label {
+      font-size: 0.75rem;
+      color: #6b7280;
+    }
+
     /* Lock Screen Overlay */
     #lockScreen {
       position: fixed;
@@ -81,13 +119,13 @@
       margin-bottom: 15px;
     }
 
-    /* Floating Hearts Styling - Clickable Fix */
+    /* Floating Hearts Styling */
     .heart-float {
       position: fixed;
       font-size: 32px;
       user-select: none;
       cursor: pointer;
-      z-index: 9999; /* Highest Z-index to click easily */
+      z-index: 9999;
       animation: floatUp 4s linear infinite;
       top: 100vh;
       padding: 10px;
@@ -166,8 +204,36 @@
 </head>
 <body class="locked">
 
+  <!-- COUNTDOWN OVERLAY -->
+  <div id="countdownScreen">
+    <div class="lock-card">
+      <div style="font-size: 3rem; margin-bottom: 10px;">⏳</div>
+      <h2 style="color: #e11d48; font-weight: 700; margin-bottom: 8px; font-size: 1.4rem;">Surprise Unlocks Soon!</h2>
+      <p style="color: #6b7280; font-size: 0.9rem; margin-bottom: 15px;">Please wait until 15th August 2026 ❤️</p>
+      
+      <div class="countdown-box">
+        <div class="time-card">
+          <div id="days" class="time-num">00</div>
+          <div class="time-label">Days</div>
+        </div>
+        <div class="time-card">
+          <div id="hours" class="time-num">00</div>
+          <div class="time-label">Hours</div>
+        </div>
+        <div class="time-card">
+          <div id="minutes" class="time-num">00</div>
+          <div class="time-label">Mins</div>
+        </div>
+        <div class="time-card">
+          <div id="seconds" class="time-num">00</div>
+          <div class="time-label">Secs</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- LOCK SCREEN OVERLAY -->
-  <div id="lockScreen">
+  <div id="lockScreen" class="hidden">
     <div class="lock-card">
       <div style="font-size: 3rem; margin-bottom: 10px;">🔒</div>
       <h2 style="color: #e11d48; font-weight: 700; margin-bottom: 8px; font-size: 1.4rem;">Private Surprise!</h2>
@@ -196,7 +262,7 @@
       </div>
     </div>
 
-    <!-- STEP 2: CANDLE BLOW (UNLOCKED AFTER 5 HEARTS) -->
+    <!-- STEP 2: CANDLE BLOW -->
     <div id="step2" class="step-card hidden">
       <h1 class="title">Make a Wish! 🕯️</h1>
       <p style="color: #6b7280; font-size: 0.9rem;">Tap on the candle to blow it out!</p>
@@ -217,27 +283,73 @@
       <h1 class="title">Happy Birthday! 🎉✨</h1>
 
       <div class="my-paragraph">
-        hey hi . kaisi ho hope ki sb thik hoga btw happy birthday mam my kajukatli 😁👰🏼‍♀️💗 aj aapka birthday hai hope ki ap khush hongi . waha sb thik hoga . mmy ,nani ,mosi,mama, or specially aap mam sb acche hogye .ap apni padhai pr dhyn dena ek acchi officer ban na mmy ka naam roshan krna unhone life mein bahut struggle kia hai unhe sari khushiya dena🪷 . me bhi thik hu 😅itna ki ab ye likh rha hu to roya nhi aa rha phele aya bahut . khair choro . acha hai ap move on hogyi bhulgyi muje shi hai koi na sbki apni life sbke apne dreams ek time tha un dreams me syd me bhi tha😄 but ab nhi . chlo acha hai me ye to keh skunga ki apne muje kisi ladke ya kisi or chiz ke chakkr mein nhi chora Apni mmy ke liye chora 🤌🏻 i proud of u mam is chiz ke liye . pr syd pr me nhi chor paya yr apko apne ghr walo ki waja se . or syd keh skta hu ki unhone muje chor dia😋🫠us din ke bad bahut si chize hui yr piche jo humari baat hui to ki me mar jaunga uske bad bahut chize hui i lost everything . mtlb ki ab anath hu syd han galti meri bhi h me janta hu sb thik hojayega papa se baat krlu to . but mera man nhi krta ab . umm bahut ydd aati h apki kashu 🤌🏻yr sb cheen lia mujse papa ne padhai bhi band krwa di and bole hue to pata nhi kitna tym hogya. gadi bhi leli bhar jana band krdia mera kaid krke rkha hai ekdm mmy bolti h thodi bahut khair choro btw muje ek chiz batani thi mene kabhi nhi batai mam jab pichle sal humari ladai hui thi ki apki chat pakdi gyi thi uske bad jo hua . me man gya tha apne jab manaya tha pr us tym aapke boards the muje pata tha ki agr ab mene baat ki to ap distract hojaogi and number acche nhi ayege to mene socha tha ki result ke bad baat krna shi h but muje nhi pata tha itna kuch hojayega is beech . Um yehi baat thi jo syd kabhi mein apse milta to batata 🫠 pr muje khushi hai ki apke bahut hi acchi % ayi🤌🏻. idk ki ap kya sochti hogi us beech pr yehi sch h . or me us gap mein kabhi kisi ladki ka nhi hua kabhi nhi aj bhi vesa hi hu bs change ye h ki ab shant hogya bad habit’s chord di sb . yrr muje bahut sari baatein batani hai apse bahut sari pr mujse kahi nhi ja rhi yr Bs itna kehta hu ki . muje apke sath bahut aacha time mila bahut acchi life mili muje sari baatein ek ek baatein yad hai🪷 or ye apka 3rd bdy h me bahut happy hu ki ye bhi wish kr rha hu 🫴🏻❤️pata nhi apke bdy se jayada khushi mujse hoti h ek festival  sa hota h ye mere liye . apka vo Sir kehna tabiyat puchna apna din share krna subha subha good morning bol school 🏫 jana 😁good night bolna i love u 2 sir bolna 🫠sb miss krta hu . pr ap itni aage badh gyi ki ab to syd wapas aogi bhi ya nhi . khair choro yr sari baatein nhi batata Kuch baatein adhuri hi shi reheti hai rishton ki trah
+hey hi . kaisi ho hope ki sb thik hoga btw happy birthday mam my kajukatli 😁👰🏼‍♀️💗 aj aapka birthday hai hope ki ap khush hongi . waha sb thik hoga . mmy ,nani ,mosi,mama, or specially aap mam sb acche hogye . 05/07/2026 ko likh rha hu ye msg . ap apni padhai pr dhyn dena ek acchi officer ban na mmy ka naam roshan krna unhone life mein bahut struggle kia hai unhe sari khushiya dena🪷 . me bhi thik hu 😅itna ki ab ye likh rha hu to roya nhi aa rha phele aya bahut . khair choro . acha hai ap move on hogyi bhulgyi muje shi hai koi na sbki apni life sbke apne dreams ek time tha un dreams me syd me bhi tha😄 but ab nhi . chlo acha hai me ye to keh skunga ki apne muje kisi ladke ya kisi or chiz ke chakkr mein nhi chora Apni mmy ke liye chora 🤌🏻 i proud of u mam is chiz ke liye . pr syd pr me nhi chor paya yr apko apne ghr walo ki waja se . or syd keh skta hu ki unhone muje chor dia😋🫠us din ke bad bahut si chize hui yr piche jo humari baat hui to ki me mar jaunga uske bad bahut chize hui i lost everything . mtlb ki ab anath hu syd han galti meri bhi h me janta hu sb thik hojayega papa se baat krlu to . but mera man nhi krta ab . umm bahut ydd aati h apki kashu 🤌🏻yr sb cheen lia mujse papa ne padhai bhi band krwa di and bole hue to pata nhi kitna tym hogya. gadi bhi leli bhar jana band krdia mera kaid krke rkha hai ekdm mmy bolti h thodi bahut khair choro btw muje ek chiz batani thi mene kabhi nhi batai mam jab pichle sal humari ladai hui thi ki apki chat pakdi gyi thi uske bad jo hua . me man gya tha apne jab manaya tha pr us tym aapke boards the muje pata tha ki agr ab mene baat ki to ap distract hojaogi and number acche nhi ayege to mene socha tha ki result ke bad baat krna shi h but muje nhi pata tha itna kuch hojayega is beech . Um yehi baat thi jo syd kabhi mein apse milta to batata 🫠 pr muje khushi hai ki apke bahut hi acchi % ayi🤌🏻. idk ki ap kya sochti hogi us beech pr yehi sch h . or me us gap mein kabhi kisi ladki ka nhi hua kabhi nhi aj bhi vesa hi hu bs change ye h ki ab shant hogya bad habit’s chord di sb . yrr muje bahut sari baatein batani hai apse bahut sari pr mujse kahi nhi ja rhi yr Bs itna kehta hu ki . muje apke sath bahut aacha time mila bahut acchi life mili muje sari baatein ek ek baatein yad hai🪷 or ye apka 3rd bdy h me bahut happy hu ki ye bhi wish kr rha hu 🫴🏻❤️pata nhi apke bdy se jayada khushi mujse hoti h ek festival sa hota h ye mere liye . apka vo Sir kehna tabiyat puchna apna din share krna subha subha good morning bol school 🏫 jana 😁good night bolna i love u 2 sir bolna 🫠sb miss krta hu . pr ap itni aage badh gyi ki ab to syd wapas aogi bhi ya nhi . khair choro yr sari baatein nhi batata Kuch baatein adhuri hi shi reheti hai rishton ki trah
 bahut se dream the pr mere nhi aapke mtlb muje ve sb chize apki life mein puri krni thi . 
 HAPPY BIRTHDAY MY MAM💗❤️👰🏼‍♀️ or haa yr muje pata hai ap meri nhi manogi agr manti to syd ab tk bhi man leti pr . glt hatho mein na chli jana yr bahut dikkt ajayegi bbu life mein🫠 syd itni ki ap spne mein bhi nhi soch skti 
-ye sare dreams apke ye mmy ko acchi life dene ke dreams sb adhure rh jayegi so pls yehi kahunga ki ladko se dur rehena Qki ye age aisi hi hoti h . aisi mt ban jana kashu ki ghr se bhr niklna band hojay🫠 muje bs yehi dar reheta hai ki koi ladka aisa na mil jay jo life khrb krde khair me tha me to ab chla jauga😋meri trf se tension mt lena babe ab nhi aunga preshan hogyi ap mere sath Dont worry nhi aunga PR KABHI koi aisi situation aay ki ghr na bata sko school ya coaching mein to mera WP h always msg kr dena 😁syd me us time apko dikha pau ki jab me aapse mila tha me kaisa tha 😋 or kabhi koi puche ki kabhi relationship me rhi ho to bol dena hA  tha ek pgl jo aj bhi muje apni manta hai aj bhi mera intzaar krta hai or ye jrur bolna ki respect krta hai 😄💗
+ye sare dreams apke ye mmy ko acchi life dene ke dreams sb adhure rh jayegi so pls yehi kahunga ki ladko se dur rehena Qki ye age aisi hi hoti h . aisi mt ban jana kashu ki ghr se bhr niklna band hojay🫠 muje bs yehi dar reheta hai ki koi ladka aisa na mil jay jo life khrb krde khair me tha me to ab chla jauga😋meri trf se tension mt lena babe ab nhi aunga preshan hogyi ap mere sath Dont worry nhi aunga PR KABHI koi aisi situation aay ki ghr na bata sko school ya coaching mein to mera WP h always msg kr dena 😁syd me us time apko dikha pau ki jab me aapse mila tha me kaisa tha 😋 or kabhi koi puche ki kabhi relationship me rhi ho to bol dena hA tha ek pgl jo aj bhi muje apni manta hai aj bhi mera intzaar krta hai or ye jrur bolna ki respect krta hai 😄💗
 or gayatri mantr hmesha krti rehena yehi wish hai meri bs .Yr kaisa aajeb haina 🫠hum 3 sal se ek dusre se ladte hue khush rehete jaise bhi pr sath h ya the whatever pr hum kabhi mil nhi skege . yr gandaa naseeb h ye Ummm sorry sb chizo ke liye . 🙏
-chlo thik hai bye mam 🤌🏻 happy birthday 🌸again Acchi rehena sundr rehena khush rehena 👰🏼‍♀️ or yadd krti rehena 😄or fikr mt krna ab kabhi preshan nhi krunga or apka hi rhunga 🫴🏻💗ek acchi officer ban na or mmy ka khoob naam roshn krna or glt logo se dur bahut ok thik haina mam.  kabhi man kre to chli ana 
+chlo thik hai bye mam 🤌🏻 happy birthday 🌸again Acchi rehena sundr rehena khush rehena 👰🏼‍♀️ or yadd krti rehena 😄or fikr mt krna ab kabhi preshan nhi krunga or apka hi rhunga 🫴🏻💗ek acchi officer ban na or mmy ka khoob naam roshn krna or glt logo se dur bahut ok thik haina mam. kabhi man kre to chli ana 
 OR BDY WISH KE THANKS KE LIYE koi msg mt krna muje agle sal mere bdy pr wish mt krna age se kabhi . thanks bolna ho to gayatri mantri padh lena 108 bar 💗
 
 bye🙂🤌🏻
-        
       </div>
 
       <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-        <a href="mistake.html" class="btn" style="background: linear-gradient(135deg, #64748b, #475569);">My Mistake 📜</a>
-        <a href="blessings.html" class="btn">Next Page ➡️</a>
+        <button onclick="showStep('mistake')" class="btn" style="background: linear-gradient(135deg, #64748b, #475569);">My Mistake 📜</button>
+        <button onclick="showStep('blessings')" class="btn">Next Page ➡️</button>
       </div>
+    </div>
+
+    <!-- NEW STEP: MY MISTAKE PAGE -->
+    <div id="stepMistake" class="step-card hidden">
+      <h1 class="title">My Mistake 📜</h1>
+      <div class="my-paragraph">
+        Yahan apni mistakes aur baatein likhein...
+      </div>
+      <button onclick="showStep(3)" class="btn">⬅️ Back to Letter</button>
+    </div>
+
+    <!-- NEW STEP: BLESSINGS PAGE -->
+    <div id="stepBlessings" class="step-card hidden">
+      <h1 class="title">Blessings & Wishes 🌸</h1>
+      <div class="my-paragraph">
+        Yahan apni blessings aur future wishes likhein...
+      </div>
+      <button onclick="showStep(3)" class="btn">⬅️ Back to Letter</button>
     </div>
 
   </div>
 
   <script>
+    // --- COUNTDOWN LOGIC FOR 15 AUG 2026 ---
+    const targetDate = new Date("August 7, 2026 00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+      if (difference <= 0) {
+        // Target date reached: Hide countdown, show lock screen
+        document.getElementById('countdownScreen').classList.add('hidden');
+        document.getElementById('lockScreen').classList.remove('hidden');
+        clearInterval(timerInterval);
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = days < 10 ? '0' + days : days;
+      document.getElementById('hours').textContent = hours < 10 ? '0' + hours : hours;
+      document.getElementById('minutes').textContent = minutes < 10 ? '0' + minutes : minutes;
+      document.getElementById('seconds').textContent = seconds < 10 ? '0' + seconds : seconds;
+    }
+
+    const timerInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // --- WEBSITE LOGIC ---
     let score = 0;
     let heartInterval;
 
@@ -254,16 +366,23 @@ bye🙂🤌🏻
       }
     }
 
-    function showStep(stepNum) {
-      if (stepNum === 2) {
-        document.getElementById('step1').classList.add('hidden');
-        document.getElementById('step2').classList.remove('hidden');
-      } else if (stepNum === 3) {
-        document.getElementById('step2').classList.add('hidden');
+    function showStep(step) {
+      // Hide all steps
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.add('hidden');
+      document.getElementById('step3').classList.add('hidden');
+      document.getElementById('stepMistake').classList.add('hidden');
+      document.getElementById('stepBlessings').classList.add('hidden');
+
+      // Show requested step
+      if (step === 1) document.getElementById('step1').classList.remove('hidden');
+      else if (step === 2) document.getElementById('step2').classList.remove('hidden');
+      else if (step === 3) {
         document.getElementById('step3').classList.remove('hidden');
-        // Stop generating hearts on final step
         clearInterval(heartInterval);
       }
+      else if (step === 'mistake') document.getElementById('stepMistake').classList.remove('hidden');
+      else if (step === 'blessings') document.getElementById('stepBlessings').classList.remove('hidden');
     }
 
     function blowCandle() {
@@ -279,7 +398,7 @@ bye🙂🤌🏻
     }
 
     function spawnHeart() {
-      if (score >= 5) return; // Stop spawning hearts if target achieved
+      if (score >= 5) return;
 
       const heart = document.createElement('div');
       heart.className = 'heart-float';
@@ -287,7 +406,6 @@ bye🙂🤌🏻
       heart.style.left = Math.random() * 75 + 10 + 'vw';
       heart.style.animationDuration = (Math.random() * 1.5 + 2.5) + 's';
       
-      // Click/Touch Event Fix
       const handleTouch = function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -298,7 +416,7 @@ bye🙂🤌🏻
 
         if (score >= 5) {
           setTimeout(() => {
-            showStep(2); // Automatically go to Candle blow step
+            showStep(2);
           }, 400);
         }
       };
